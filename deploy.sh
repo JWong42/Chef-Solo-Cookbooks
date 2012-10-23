@@ -11,14 +11,14 @@ host="${1:-root@96.126.110.107}"
 ssh-keygen -R "${host#*@}" 2> /dev/null 
 
 # upload the public key to set up Public Key Authentication instead of PW Authentication
-ssh-copy-id "$host"
+#ssh-copy-id "$host"
 
 # creates an archive of the specified directory in bzip2 format
 # pipe the output to tar in a string of command issued through ssh
 # always confirm host key fingerprint during ssh 
-tar cj chef/ | ssh -o 'StrictHostKeyChecking no' "$host" '
+tar cj ./chef/* | ssh -o 'StrictHostKeyChecking no' "$host" '
 sudo rm -rf ~/chef && 
 mkdir ~/chef &&
 cd ~/chef &&
-tar xj && 
-sudo bash install.sh' 
+tar xj &&
+sudo bash chef/install.sh' 
