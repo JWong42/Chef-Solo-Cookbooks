@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
-apt-get -y update
-apt-get -y upgrade 
+chef_binary=/usr/local/bin/chef-solo
 
-apt-get -y install ruby1.9.1 build-essential 
-gem install chef --no-rdoc --no-ri 
+if ! [ -f "$chef_binary" ]; then
+
+  apt-get -y update
+  apt-get -y upgrade 
+
+  apt-get -y install ruby1.9.1 build-essential 
+  gem install chef --no-rdoc --no-ri 
+
+fi 
+
