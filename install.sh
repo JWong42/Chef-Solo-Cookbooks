@@ -7,7 +7,7 @@ if ! [ -f "$chef_binary" ]; then
   apt-get -y update
   apt-get -y upgrade 
 
-  apt-get -y install ruby1.9.1 build-essential 
+  apt-get -y install ruby1.9.1 ruby1.9.1-dev build-essential
   gem install chef --no-rdoc --no-ri 
 
 fi 
