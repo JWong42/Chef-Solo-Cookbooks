@@ -1,9 +1,10 @@
 #!/usr/bin/env bash 
 
-# Usage: ./deploy.sh [host]
+# Usage: ./deploy.sh [host] [identity_file]
 
 # use the commandline argument 1 or if it's not there, use the ip specified here 
 host="${1:-root@96.126.110.107}"
+identity_file="$2"
 
 # removes old host from known_hosts in case host key changes when new VM instantiates
 # parameter expansion removes anything in host variable before and including @
@@ -16,7 +17,7 @@ ssh-keygen -R "${host#*@}" 2> /dev/null
 # creates an archive of the specified directory in bzip2 format
 # pipe the output to tar in a string of command issued through ssh
 # always confirm host key fingerprint during ssh 
-tar cj ./chef/* | ssh -o 'StrictHostKeyChecking no' "$host" '
+tar cj ./chef/* | ssh -o 'StrictHostKeyChecking no' "$host" -i "$identity_file" '
 sudo rm -rf ~/chef && 
 mkdir ~/chef &&
 cd ~/chef &&
