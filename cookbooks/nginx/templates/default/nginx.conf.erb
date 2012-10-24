@@ -1,5 +1,5 @@
 user www-data;
-worker_processes 4;
+worker_processes <%= @node[:nginx][:worker_processes] %>;
 pid /var/run/nginx.pid;
 
 events {
