@@ -12,3 +12,4 @@ if ! [ -f "$chef_binary" ]; then
 
 fi 
 
+$chef_binary -c /home/ubuntu/chef/chef/solo.rb
